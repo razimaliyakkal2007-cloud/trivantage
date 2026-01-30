@@ -1,0 +1,1025 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Trivantage | Tripod Store</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Bootstrap -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<!-- Google Font -->
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display+SC&display=swap" rel="stylesheet">
+
+<style>
+body{
+    background:#f5f7fa;
+    font-family:Segoe UI, sans-serif;
+}
+
+/* NAVBAR */
+.navbar{ padding:8px 0; }
+.nav-logo{ height:40px; border-radius:50%; }
+.brand-text{
+    font-family:'Playfair Display SC', serif;
+    font-size:26px;
+    letter-spacing:2px;
+    padding-left:10px;
+}
+.badge-icon{
+    position:absolute;
+    top:-5px;
+    right:-8px;
+    font-size:10px;
+}
+
+/* HERO */
+.hero{ position:relative; height:80vh; overflow:hidden; }
+.hero video{ width:100%; height:100%; object-fit:cover; }
+.hero-overlay{
+    position:absolute;
+    inset:0;
+    background:rgba(0,0,0,.55);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#fff;
+    text-align:center;
+}
+
+/* PRODUCT CARD */
+.product-card{
+    border:none;
+    border-radius:16px;
+    overflow:hidden;
+    box-shadow:0 8px 20px rgba(0,0,0,.12);
+    transition:.3s;
+    min-height:460px;
+    display:flex;
+    flex-direction:column;
+}
+.product-card:hover{ transform:translateY(-6px); }
+
+/* IMAGE */
+.img-box{
+    position:relative;
+    height:200px;
+    background:#fff;
+    cursor:pointer;
+}
+.img-box img{
+    width:100%;
+    height:100%;
+    object-fit:contain;
+}
+
+/* ICONS */
+.action-icons{
+    position:absolute;
+    top:12px;
+    right:12px;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+}
+.action-icons span{
+    width:38px;
+    height:38px;
+    background:#fff;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+    box-shadow:0 4px 10px rgba(0,0,0,.2);
+}
+.action-icons span:hover{
+    background:#0d6efd;
+    color:#fff;
+}
+
+.price{
+    color:#0d6efd;
+    font-size:18px;
+    font-weight:600;
+}
+.card-body{ margin-top:auto; }
+.footer-links a{
+    color:#adb5bd;
+    text-decoration:none;
+    display:block;
+    margin-bottom:8px;
+}
+.footer-links a:hover{
+    color:#fff;
+}
+
+.social-icon{
+    display:inline-block;
+    width:36px;
+    height:36px;
+    line-height:36px;
+    text-align:center;
+    background:#212529;
+    color:#fff;
+    border-radius:50%;
+    margin-right:8px;
+    transition:.3s;
+}
+.social-icon:hover{
+    background:#0d6efd;
+}
+
+
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+<div class="container-fluid">
+
+<a class="navbar-brand d-flex align-items-center" href="#">
+<img src="chatlogo.png" class="nav-logo">
+<span class="brand-text text-white">TRIVANTAGE</span>
+</a>
+
+<button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navMenu">
+<span class="navbar-toggler-icon"></span>
+</button>
+
+<div class="collapse navbar-collapse" id="navMenu">
+<ul class="navbar-nav ms-auto gap-3">
+
+<li class="nav-item"><a href="index.html" class="nav-link active">Home</a></li>
+<li class="nav-item"><a href="#pro" class="nav-link">Products</a></li>
+<li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+<li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+
+<li class="nav-item position-relative">
+<a class="nav-link" href="wishlist.html">
+<i class="fa-regular fa-heart fs-5"></i>
+<span class="badge bg-danger badge-icon" id="wishCount">0</span>
+</a>
+</li>
+
+<li class="nav-item position-relative">
+<a class="nav-link" href="addtocart.html">
+<i class="fa-solid fa-cart-shopping fs-5"></i>
+<span class="badge bg-success badge-icon" id="cartCount">0</span>
+</a>
+</li>
+
+</ul>
+</div>
+</div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+<video autoplay muted loop>
+<source src="hp.mp4" type="video/mp4">
+</video>
+<div class="hero-overlay">
+<div>
+<h1 class="fw-bold">Capture Every Angle</h1>
+<p>Premium Camera Tripods</p>
+</div>
+</div>
+</section>
+
+<!-- INFO -->
+<div class="container my-5 text-center">
+<p id="pro">
+Trivantage delivers reliable, stylish and professional tripods for photographers,
+videographers and content creators.
+</p>
+<h5 class="fw-bold">Stability • Strength • Style</h5>
+</div>
+
+<!-- PRODUCTS -->
+<div class="container pb-5">
+<h2 class="text-center mb-4" >Our Tripods</h2>
+<div class="row g-4">
+
+<!-- PRODUCT 1 -->
+<div class="col-md-4">
+<div class="card product-card">
+<div class="img-box">
+<img src="t1.png">
+<div class="action-icons">
+<span onclick="addWishlist(' Heavy Duty Tripod',1999,'t1.png')">
+<i class="fa-regular fa-heart"></i>
+</span>
+<span onclick="addCart(' HEAVY DUTY Tripod',1999,'t1.png')">
+<i class="fa-solid fa-cart-shopping"></i>
+</span>
+</div>
+</div>
+<div class="card-body text-center">
+<h5>heavy duty Tripod</h5>
+<p class="price">₹1,999</p>
+<div class="text-warning">★★★★☆ <small>(4.5)</small></div>
+<button class="btn btn-primary w-100 mb-2" data-bs-toggle="modal" data-bs-target="#modal1">View</button>
+<button class="btn btn-success w-100" onclick="buyNow('heavy duty Tripod',1999,'t1.png')">Buy Now</button>
+</div>
+</div>
+</div>
+
+<!-- PRODUCT 2 -->
+<div class="col-md-4">
+<div class="card product-card">
+<div class="img-box">
+<img src="ta1.png">
+<div class="action-icons">
+<span onclick="addWishlist('Selfie stick mini Tripod',2400,'ta1.png')"><i class="fa-regular fa-heart"></i></span>
+<span onclick="addCart('Selfie stick mini Tripod',2400,'ta1.png')"><i class="fa-solid fa-cart-shopping"></i></span>
+</div>
+</div>
+<div class="card-body text-center">
+<h5>Selfie stick mini Tripod</h5>
+<p class="price">₹2,400</p>
+<div class="text-warning">★★★★☆</div>
+<button class="btn btn-primary w-100 mb-2" data-bs-target="#modal2" data-bs-toggle="modal">View</button>
+<button class="btn btn-success w-100"
+onclick="buyNow('Selfie stick mini Tripod',2899,'ta1.png')">
+Buy Now
+</button>
+</div>
+</div>
+</div>
+
+<!-- PRODUCT 3 -->
+<div class="col-md-4">
+<div class="card product-card">
+<div class="img-box">
+<img src="tb1.png">
+<div class="action-icons">
+<span onclick="addWishlist('Mobile Selfie Tripod',1600,'tb1.png')"><i class="fa-regular fa-heart"></i></span>
+<span onclick="addCart('Mobile Selfie Tripod',1600,'tb1.png')"><i class="fa-solid fa-cart-shopping"></i></span>
+</div>
+</div>
+<div class="card-body text-center">
+<h5>Mobile Selfie Tripod</h5>
+<p class="price">₹1,600</p>
+<div class="text-warning">★★★★☆</div>
+<button class="btn btn-primary w-100 mb-2" data-bs-target="#modal3" data-bs-toggle="modal">View</button>
+<button class="btn btn-success w-100" onclick="buyNow('Mobile Selfie Tripod',1600,'tb1.png')">Buy Now</button>
+</div>
+</div>
+</div>
+
+<!-- PRODUCT 4 -->
+<div class="col-md-4">
+<div class="card product-card">
+<div class="img-box">
+<img src="tc1.jpeg">
+<div class="action-icons">
+<span onclick="addWishlist('dtr 550 lw 67inch tripod',3499,'tc1.jpeg')"><i class="fa-regular fa-heart"></i></span>
+<span onclick="addCart('dtr 550 lw 67inch tripod',3499,'tc1.jpeg')"><i class="fa-solid fa-cart-shopping"></i></span>
+</div>
+</div>
+<div class="card-body text-center">
+<h5>dtr 550 lw 67inch tripod</h5>
+<p class="price">₹3,499</p>
+<div class="text-warning">★★★★☆</div>
+<button class="btn btn-primary w-100 mb-2" data-bs-target="#modal4" data-bs-toggle="modal">View</button>
+<button class="btn btn-success w-100" onclick="buyNow('dtr 550 lw 67inch tripod',3499,'tc1.jpeg')">Buy Now</button>
+</div>
+</div>
+</div>
+
+<!-- PRODUCTS 5–12 -->
+<!-- SAME PATTERN -->
+<!-- img-box → NO modal -->
+<!-- View button → modal -->
+
+
+<!-- PRODUCT 5 -->
+
+<div class="col-md-4">
+<div class="card product-card">
+<div class="img-box">
+<img src="td1.jpeg">
+<div class="action-icons">
+<span onclick="addWishlist('Flexible Gorilla Tripod',2799,'td1.jpeg')">
+<i class="fa-regular fa-heart"></i>
+</span>
+<span onclick="addCart('Flexible Gorilla Tripod',2799,'td1.jpeg')">
+<i class="fa-solid fa-cart-shopping"></i>
+</span>
+</div>
+</div>
+<div class="card-body text-center">
+<h5>Flexible Gorilla Tripod</h5>
+<p class="price">₹2,799</p>
+<div class="text-warning">
+  ★★★★☆ <small>(4.5)</small>
+</div>
+
+<button class="btn btn-primary w-100 mb-2" data-bs-target="#modal5" data-bs-toggle="modal">View</button>
+<button class="btn btn-success w-100"
+onclick="buyNow('Flexible Gorilla Tripod',2799,'td1.jpeg')">Buy Now</button>
+</div>
+</div>
+</div>
+
+<!-- PRODUCT 6 -->
+
+<div class="col-md-4">
+<div class="card product-card">
+<div class="img-box">
+<img src="te1.jpeg">
+<div class="action-icons">
+<span onclick="addWishlist(' Tripod cemara & smart phone holder',1899,'te1.jpeg')">
+<i class="fa-regular fa-heart"></i>
+</span>
+<span onclick="addCart('Tripod cemara & smart phone holder',1899,'te1.jpeg')">
+<i class="fa-solid fa-cart-shopping"></i>
+</span>
+</div>
+</div>
+<div class="card-body text-center">
+<h5>Tripod cemara & smart phone holder</h5>
+<p class="price">₹1,899</p>
+<div class="text-warning">
+  ★★★★☆ <small>(4.5)</small>
+</div>
+
+<button class="btn btn-primary w-100 mb-2" data-bs-target="#modal6" data-bs-toggle="modal">View</button>
+<button class="btn btn-success w-100"
+onclick="buyNow('Tripod cemara & smart phone holder',1899,'te1.jpeg')">Buy Now</button>
+</div>
+</div>
+</div>
+<!-- PRODUCT 7-->
+
+<div class="col-md-4">
+<div class="card product-card">
+<div class="img-box">
+<img src="tf.jpeg">
+<div class="action-icons">
+<span onclick="addWishlist('Professional monopod',2199,'tf.jpeg')">
+<i class="fa-regular fa-heart"></i>
+</span>
+<span onclick="addCart('Professional monopod',2199,'tf.jpeg')">
+<i class="fa-solid fa-cart-shopping"></i>
+</span>
+</div>
+</div>
+<div class="card-body text-center">
+<h5>Professional monopod</h5>
+<p class="price">₹2,199</p>
+<div class="text-warning">
+  ★★★★☆ <small>(4.5)</small>
+</div>
+
+<button class="btn btn-primary w-100 mb-2" data-bs-target="#modal7" data-bs-toggle="modal">View</button>
+<button class="btn btn-success w-100"
+onclick="buyNow('Professional monopod',2199,'tf.jpeg')">Buy Now</button>
+</div>
+</div>
+</div>
+<!-- PRODUCT 8 -->
+
+<div class="col-md-4">
+<div class="card product-card">
+<div class="img-box">
+<img src="tg2.jpeg">
+<div class="action-icons">
+<span onclick="addWishlist('Tripod Selfie stick',4599,'tg1.jpeg')">
+<i class="fa-regular fa-heart"></i>
+</span>
+<span onclick="addCart('Tripod Selfie stick',4599,'tg1.jpeg')">
+<i class="fa-solid fa-cart-shopping"></i>
+</span>
+</div>
+</div>
+<div class="card-body text-center">
+<h5>Tripod Selfie stick</h5>
+<p class="price">₹4,599</p>
+<div class="text-warning">
+  ★★★★☆ <small>(4.5)</small>
+</div>
+
+<button class="btn btn-primary w-100 mb-2" data-bs-target="#modal8" data-bs-toggle="modal">View</button>
+<button class="btn btn-success w-100"
+onclick="buyNow('Tripod Selfie stick',4599,'tg1.jpeg')">Buy Now</button>
+</div>
+</div>
+</div>
+<!-- PRODUCT 9 -->
+
+<div class="col-md-4">
+<div class="card product-card">
+<div class="img-box">
+<img src="tripod.jpeg">
+<div class="action-icons">
+<span onclick="addWishlist('mobile Tripod',999,'tripod.jpeg')">
+<i class="fa-regular fa-heart"></i>
+</span>
+<span onclick="addCart('mobile Tripod',999,'tripod.jpeg')">
+<i class="fa-solid fa-cart-shopping"></i>
+</span>
+</div>
+</div>
+<div class="card-body text-center">
+<h5>mobile Tripod</h5>
+<p class="price">₹999</p>
+<div class="text-warning">
+  ★★★★☆ <small>(4.5)</small>
+</div>
+
+<button class="btn btn-primary w-100 mb-2" data-bs-target="#modal9" data-bs-toggle="modal">View</button>
+<button class="btn btn-success w-100"
+onclick="buyNow('mobile Tripod',999,'tripod.jpeg')">Buy Now</button>
+</div>
+</div>
+</div>
+
+<!-- PRODUCT 10 -->
+
+<div class="col-md-4">
+<div class="card product-card">
+<div class="img-box">
+<img src="tl3.jpeg">
+<div class="action-icons">
+<span onclick="addWishlist('Tabletop Mini Tripod',6299,'tl2.jpeg')">
+<i class="fa-regular fa-heart"></i>
+</span>
+<span onclick="addCart('Tabletop Mini Tripod',6299,'tl3.jpeg')">
+<i class="fa-solid fa-cart-shopping"></i>
+</span>
+</div>
+</div>
+<div class="card-body text-center">
+<h5>Tabletop Mini Tripod</h5>
+<p class="price">₹6,299</p>
+<div class="text-warning">
+  ★★★★☆ <small>(4.5)</small>
+</div>
+
+<button class="btn btn-primary w-100 mb-2" data-bs-target="#modal10" data-bs-toggle="modal">View</button>
+<button class="btn btn-success w-100"
+onclick="buyNow('Tabletop Mini Tripod',6299,'tl3.jpeg')">Buy Now</button>
+</div>
+</div>
+</div>
+
+<!-- PRODUCT 11 -->
+
+<div class="col-md-4">
+<div class="card product-card">
+<div class="img-box">
+<img src="tj2.jpeg">
+<div class="action-icons">
+<span onclick="addWishlist('alluminuim alloy tripod',2899,'tj2.jpeg')">
+<i class="fa-regular fa-heart"></i>
+</span>
+<span onclick="addCart('alluminuim alloy tripod',2899,'tj2.jpeg')">
+<i class="fa-solid fa-cart-shopping"></i>
+</span>
+</div>
+</div>
+<div class="card-body text-center">
+<h5>alluminuim alloy tripod</h5>
+<p class="price">₹2,899</p>
+<div class="text-warning">
+  ★★★☆ <small>(4.5)</small>
+</div>
+
+<button class="btn btn-primary w-100 mb-2" data-bs-target="#modal11" data-bs-toggle="modal">View</button>
+<button class="btn btn-success w-100"
+onclick="buyNow('alluminuim alloy tripod',2899,'tj2.jpeg')">Buy Now</button>
+</div>
+</div>
+</div>
+
+<!-- PRODUCT 12-->
+
+<div class="col-md-4">
+<div class="card product-card">
+<div class="img-box">
+<img src="tk3.jpeg">
+<div class="action-icons">
+<span onclick="addWishlist('Mobile Tripod',3199,'tk3.jpeg')">
+<i class="fa-regular fa-heart"></i>
+</span>
+<span onclick="addCart('Mobile Tripod',3199,'tk3.jpeg')">
+<i class="fa-solid fa-cart-shopping"></i>
+</span>
+</div>
+</div>
+<div class="card-body text-center">
+<h5> Mobile Tripod</h5>
+<p class="price">₹3,199</p>
+<div class="text-warning">
+  ★★★★☆ <small>(4.5)</small>
+</div>
+
+<button class="btn btn-primary w-100 mb-2" data-bs-target="#modal12" data-bs-toggle="modal">View</button>
+<button class="btn btn-success w-100"
+onclick="buyNow('Mobile Tripod',3199,'tk3.jpeg')">Buy Now</button>
+</div>
+</div>
+</div>
+
+
+
+
+</div>
+</div>
+
+<!-- MODALS -->
+<!-- MODAL 1 -->
+<div class="modal fade" id="modal1" tabindex="-1">
+<div class="modal-dialog modal-lg modal-dialog-centered">
+<div class="modal-content">
+<div class="modal-header">
+<h5>heavy duty Tripod</h5>
+<button class="btn-close" data-bs-dismiss="modal"></button>
+</div>
+<div class="modal-body">
+<div id="carousel1" class="carousel slide">
+<div class="carousel-inner">
+<div class="carousel-item active">
+<img src="t2.png" class="d-block w-100">
+</div>
+<div class="carousel-item">
+<img src="t3.png" class="d-block w-100">
+</div>
+</div>
+<button class="carousel-control-prev" data-bs-target="#carousel1" data-bs-slide="prev">
+<span class="carousel-control-prev-icon"></span>
+</button>
+<button class="carousel-control-next" data-bs-target="#carousel1" data-bs-slide="next">
+<span class="carousel-control-next-icon"></span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- MODAL 2 -->
+<div class="modal fade" id="modal2" tabindex="-1">
+<div class="modal-dialog modal-lg modal-dialog-centered">
+<div class="modal-content">
+<div class="modal-header">
+<h5>Selfie stick mini Tripod
+</h5>
+<button class="btn-close" data-bs-dismiss="modal"></button>
+</div>
+<div class="modal-body">
+<div id="carousel2" class="carousel slide">
+<div class="carousel-inner">
+<div class="carousel-item active">
+<img src="ta2.png" class="d-block w-100">
+</div>
+<div class="carousel-item">
+<img src="ta3.png" class="d-block w-100">
+</div>
+</div>
+<button class="carousel-control-prev" data-bs-target="#carousel2" data-bs-slide="prev">
+<span class="carousel-control-prev-icon"></span>
+</button>
+<button class="carousel-control-next" data-bs-target="#carousel2" data-bs-slide="next">
+<span class="carousel-control-next-icon"></span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- MODAL 3 -->
+<div class="modal fade" id="modal3" tabindex="-1">
+<div class="modal-dialog modal-lg modal-dialog-centered">
+<div class="modal-content">
+<div class="modal-header">
+<h5>Mobile Selfie Tripod</h5>
+<button class="btn-close" data-bs-dismiss="modal"></button>
+</div>
+<div class="modal-body">
+<div id="carousel3" class="carousel slide">
+<div class="carousel-inner">
+<div class="carousel-item active">
+<img src="tb2.png" class="d-block w-100">
+</div>
+<div class="carousel-item">
+<img src="tb3.png" class="d-block w-100">
+</div>
+</div>
+<button class="carousel-control-prev" data-bs-target="#carousel3" data-bs-slide="prev">
+<span class="carousel-control-prev-icon"></span>
+</button>
+<button class="carousel-control-next" data-bs-target="#carousel3" data-bs-slide="next">
+<span class="carousel-control-next-icon"></span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+<!-- MODAL 4 -->
+<div class="modal fade" id="modal4" tabindex="-1">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      
+      <div class="modal-header">
+        <h5>dtr 550 lw 67inch tripod</h5>
+        <button class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <div class="modal-body">
+        <div id="carousel4" class="carousel slide">
+
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img src="tc1.jpeg" class="d-block w-100">
+            </div>
+            <div class="carousel-item">
+              <img src="tc2.jpeg" class="d-block w-100">
+            </div>
+          </div>
+
+          <button class="carousel-control-prev"
+            data-bs-target="#carousel4" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+          </button>
+
+          <button class="carousel-control-next"
+            data-bs-target="#carousel4" data-bs-slide="next">
+            <span class="carousel-control-next-icon"></span>
+          </button>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="modal5" tabindex="-1">
+<div class="modal-dialog modal-lg modal-dialog-centered">
+<div class="modal-content">
+<div class="modal-header">
+<h5>Flexible Gorilla Tripod</h5>
+<button class="btn-close" data-bs-dismiss="modal"></button>
+</div>
+<div class="modal-body">
+<div id="carousel5" class="carousel slide">
+<div class="carousel-inner">
+<div class="carousel-item active">
+<img src="td1.jpeg" class="d-block w-100">
+</div>
+<div class="carousel-item">
+<img src="td2.jpeg" class="d-block w-100">
+</div>
+</div>
+<button class="carousel-control-prev" data-bs-target="#carousel5" data-bs-slide="prev">
+<span class="carousel-control-prev-icon"></span>
+</button>
+<button class="carousel-control-next" data-bs-target="#carousel5" data-bs-slide="next">
+<span class="carousel-control-next-icon"></span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+<div class="modal fade" id="modal6" tabindex="-1">
+<div class="modal-dialog modal-lg modal-dialog-centered">
+<div class="modal-content">
+<div class="modal-header">
+<h5>Tripod cemara & smart phone holder</h5>
+<button class="btn-close" data-bs-dismiss="modal"></button>
+</div>
+<div class="modal-body">
+<div id="carousel6" class="carousel slide">
+<div class="carousel-inner">
+<div class="carousel-item active">
+<img src="te1.jpeg" class="d-block w-100">
+</div>
+<div class="carousel-item">
+<img src="te2.jpeg" class="d-block w-100">
+</div>
+</div>
+<button class="carousel-control-prev" data-bs-target="#carousel6" data-bs-slide="prev">
+<span class="carousel-control-prev-icon"></span>
+</button>
+<button class="carousel-control-next" data-bs-target="#carousel6" data-bs-slide="next">
+<span class="carousel-control-next-icon"></span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+<div class="modal fade" id="modal7" tabindex="-1">
+<div class="modal-dialog modal-lg modal-dialog-centered">
+<div class="modal-content">
+<div class="modal-header">
+<h5>Professional monopod</h5>
+<button class="btn-close" data-bs-dismiss="modal"></button>
+</div>
+<div class="modal-body">
+<div id="carousel7" class="carousel slide">
+<div class="carousel-inner">
+<div class="carousel-item active">
+<img src="tf1.jpeg" class="d-block w-100">
+</div>
+<div class="carousel-item">
+<img src="tf2.jpeg" class="d-block w-100">
+</div>
+</div>
+<button class="carousel-control-prev" data-bs-target="#carousel7" data-bs-slide="prev">
+<span class="carousel-control-prev-icon"></span>
+</button>
+<button class="carousel-control-next" data-bs-target="#carousel7" data-bs-slide="next">
+<span class="carousel-control-next-icon"></span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+<div class="modal fade" id="modal8" tabindex="-1">
+<div class="modal-dialog modal-lg modal-dialog-centered">
+<div class="modal-content">
+<div class="modal-header">
+<h5>Tripod Selfie stick</h5>
+<button class="btn-close" data-bs-dismiss="modal"></button>
+</div>
+<div class="modal-body">
+<div id="carousel8" class="carousel slide">
+<div class="carousel-inner">
+<div class="carousel-item active">
+<img src="tg1.jpeg" class="d-block w-100">
+</div>
+<div class="carousel-item">
+<img src="tg2.jpeg" class="d-block w-100">
+</div>
+</div>
+<button class="carousel-control-prev" data-bs-target="#carousel8" data-bs-slide="prev">
+<span class="carousel-control-prev-icon"></span>
+</button>
+<button class="carousel-control-next" data-bs-target="#carousel8" data-bs-slide="next">
+<span class="carousel-control-next-icon"></span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+<div class="modal fade" id="modal9" tabindex="-1">
+<div class="modal-dialog modal-lg modal-dialog-centered">
+<div class="modal-content">
+<div class="modal-header">
+<h5>mobile Tripod</h5>
+<button class="btn-close" data-bs-dismiss="modal"></button>
+</div>
+<div class="modal-body">
+<div id="carousel9" class="carousel slide">
+<div class="carousel-inner">
+<div class="carousel-item active">
+<img src="th2.jpeg" class="d-block w-100">
+</div>
+<div class="carousel-item">
+<img src="th3.jpeg" class="d-block w-100">
+</div>
+</div>
+<button class="carousel-control-prev" data-bs-target="#carousel9" data-bs-slide="prev">
+<span class="carousel-control-prev-icon"></span>
+</button>
+<button class="carousel-control-next" data-bs-target="#carousel9" data-bs-slide="next">
+<span class="carousel-control-next-icon"></span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+<div class="modal fade" id="modal10" tabindex="-1">
+<div class="modal-dialog modal-lg modal-dialog-centered">
+<div class="modal-content">
+<div class="modal-header">
+<h5>table top mini tripod</h5>
+<button class="btn-close" data-bs-dismiss="modal"></button>
+</div>
+<div class="modal-body">
+<div id="carousel10" class="carousel slide">
+<div class="carousel-inner">
+<div class="carousel-item active">
+<img src="tl2.jpeg" class="d-block w-100">
+</div>
+<div class="carousel-item">
+<img src="tl1.jpeg" class="d-block w-100">
+</div>
+</div>
+<button class="carousel-control-prev" data-bs-target="#carousel10" data-bs-slide="prev">
+<span class="carousel-control-prev-icon"></span>
+</button>
+<button class="carousel-control-next" data-bs-target="#carousel10" data-bs-slide="next">
+<span class="carousel-control-next-icon"></span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+<div class="modal fade" id="modal11" tabindex="-1">
+<div class="modal-dialog modal-lg modal-dialog-centered">
+<div class="modal-content">
+<div class="modal-header">
+<h5>alluminuim alloy tripod</h5>
+<button class="btn-close" data-bs-dismiss="modal"></button>
+</div>
+<div class="modal-body">
+<div id="carousel11" class="carousel slide">
+<div class="carousel-inner">
+<div class="carousel-item active">
+<img src="tj3.jpeg" class="d-block w-100">
+</div>
+<div class="carousel-item">
+<img src="tj3.jpeg" class="d-block w-100">
+</div>
+</div>
+<button class="carousel-control-prev" data-bs-target="#carousel11" data-bs-slide="prev">
+<span class="carousel-control-prev-icon"></span>
+</button>
+<button class="carousel-control-next" data-bs-target="#carousel11" data-bs-slide="next">
+<span class="carousel-control-next-icon"></span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="modal fade" id="modal12" tabindex="-1">
+<div class="modal-dialog modal-lg modal-dialog-centered">
+<div class="modal-content">
+<div class="modal-header">
+<h5>Mobile Tripod</h5>
+<button class="btn-close" data-bs-dismiss="modal"></button>
+</div>
+<div class="modal-body">
+<div id="carousel12" class="carousel slide">
+<div class="carousel-inner">
+<div class="carousel-item active">
+<img src="tk1.jpeg" class="d-block w-100">
+</div>
+<div class="carousel-item">
+<img src="tk2.jpeg" class="d-block w-100">
+</div>
+</div>
+<button class="carousel-control-prev" data-bs-target="#carousel12" data-bs-slide="prev">
+<span class="carousel-control-prev-icon"></span>
+</button>
+<button class="carousel-control-next" data-bs-target="#carousel12" data-bs-slide="next">
+<span class="carousel-control-next-icon"></span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+
+
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+document.addEventListener("DOMContentLoaded", updateCounts);
+
+if (!localStorage.getItem("init")) {
+    localStorage.removeItem("cart");
+    localStorage.removeItem("wishlist");
+    localStorage.setItem("init", "true");
+}
+function updateCounts(){
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+    cartCount.textContent = cart.length;
+    wishCount.textContent = wishlist.length;
+    
+}
+
+function addCart(name, price, image){
+      let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    let found = cart.find(item => item.name === name);
+
+    if(found){
+        found.qty += 1;
+    } else {
+        cart.push({ name, price, image, qty: 1 });
+    }
+
+    localStorage.setItem("cart", JSON.stringify(cart));
+    updateCounts();
+}
+
+function addWishlist(name, price, image){
+    let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+    if(wishlist.some(i=>i.name===name)){
+        alert("Already in wishlist ❤️");
+        return;
+    }
+    wishlist.push({name,price,image});
+    localStorage.setItem("wishlist", JSON.stringify(wishlist));
+    updateCounts();
+}
+
+function buyNow(name, price, image){
+  const item = {
+    name: name,
+    price: price,
+    image: image
+  };
+
+  localStorage.setItem("buyNowItem", JSON.stringify(item));
+  console.log("Saved Item:", item); // 🔍 DEBUG
+  window.location.href = "buynow.html";
+}
+
+</script>
+
+
+<!-- FOOTER -->
+<footer class="bg-dark text-light pt-5">
+<div class="container">
+<div class="row g-4">
+
+<!-- BRAND -->
+<div class="col-md-4">
+<h4 class="brand-text text-white">TRIVANTAGE</h4>
+<p class="mt-3 text-muted">
+Premium photography products designed for professionals and creators. 
+Quality, innovation, and reliability in every shot.
+</p>
+</div>
+
+<!-- QUICK LINKS -->
+<div class="col-md-4">
+<h5 class="mb-3">Quick Links</h5>
+<ul class="list-unstyled footer-links">
+<li><a href="index1.html">Home</a></li>
+<li><a href="about.html">About Us</a></li>
+<li><a href="index1.html">Products</a></li>
+<li><a href="contact.html">Contact</a></li>
+</ul>
+</div>
+
+<!-- CONTACT INFO -->
+<div class="col-md-4">
+<h5 class="mb-3">Contact</h5>
+<p><i class="fa-solid fa-location-dot me-2"></i>Photography City, India</p>
+<p><i class="fa-solid fa-phone me-2"></i>+91 98765 43210</p>
+<p><i class="fa-solid fa-envelope me-2"></i>support@trivantage.com</p>
+
+<div class="mt-3">
+<a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+<a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+<a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+<a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+</div>
+</div>
+
+</div>
+
+<hr class="border-secondary my-4">
+
+<div class="text-center pb-3 text-muted">
+© 2026 TRIVANTAGE. All Rights Reserved.
+</div>
+
+</div>
+</footer>
+
+
+
+</body>
+</html>

@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>My Cart | TRIVANTAGE</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Bootstrap -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+body{
+    background:#f5f7fa;
+}
+.cart-img{
+    width:90px;
+    height:90px;
+    object-fit:cover;
+    border-radius:12px;
+}
+.qty-btn{
+    width:34px;
+    height:34px;
+}
+.card{
+    border:none;
+    border-radius:16px;
+}
+.summary-card{
+    position:sticky;
+    top:100px;
+}
+.empty-cart{
+    text-align:center;
+    padding:60px 0;
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-dark bg-dark fixed-top">
+<div class="container-fluid">
+<a class="navbar-brand fw-bold" href="index.html">TRIVANTAGE</a>
+
+<div class="d-flex gap-4">
+<a class="nav-link text-white position-relative" href="wishlist.html">
+<i class="fa-regular fa-heart fs-5"></i>
+<span class="badge bg-danger position-absolute top-0 start-100" id="wishCount">0</span>
+</a>
+
+<a class="nav-link text-white position-relative" href="addtocart.html">
+<i class="fa-solid fa-cart-shopping fs-5"></i>
+<span class="badge bg-success position-absolute top-0 start-100" id="cartCount">0</span>
+</a>
+</div>
+</div>
+</nav>
+
+<!-- CART SECTION -->
+<div class="container mt-5 pt-5">
+<h3 class="mb-4 fw-bold">My Cart</h3>
+
+<div class="row g-4">
+<!-- CART ITEMS -->
+<div class="col-lg-8">
+<div id="cartItems"></div>
+</div>
+
+<!-- SUMMARY -->
+<div class="col-lg-4">
+<div class="card shadow summary-card">
+<div class="card-body">
+<h5 class="fw-bold mb-3">Order Summary</h5>
+
+<div class="d-flex justify-content-between mb-2">
+<span>Subtotal</span>
+<span>₹ <span id="totalPrice">0</span></span>
+</div>
+
+<div class="d-flex justify-content-between mb-2">
+<span>Delivery</span>
+<span class="text-success">Free</span>
+</div>
+
+<hr>
+
+<div class="d-flex justify-content-between fw-bold fs-5">
+<span>Total</span>
+<span>₹ <span id="finalPrice">0</span></span>
+</div>
+
+<button class="btn btn-dark w-100 mt-4" data-bs-toggle="modal" data-bs-target="#checkoutModal">
+Proceed to Checkout
+</button>
+
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- CHECKOUT MODAL -->
+<div class="modal fade" id="checkoutModal" tabindex="-1">
+<div class="modal-dialog modal-lg modal-dialog-centered">
+<div class="modal-content">
+
+<div class="modal-header">
+<h5 class="modal-title">Checkout</h5>
+<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+</div>
+
+<div class="modal-body">
+<form id="checkoutForm">
+
+<div class="row g-3">
+
+<div class="col-md-6">
+<label class="form-label">Full Name</label>
+<input type="text" class="form-control" required>
+</div>
+
+<div class="col-md-6">
+<label class="form-label">Mobile Number</label>
+<input type="tel" class="form-control" required>
+</div>
+
+<div class="col-12">
+<label class="form-label">Email</label>
+<input type="email" class="form-control" required>
+</div>
+
+<div class="col-12">
+<label class="form-label">Delivery Address</label>
+<textarea class="form-control" rows="3" required></textarea>
+</div>
+
+<div class="col-md-6">
+<label class="form-label">Payment Method</label>
+<select class="form-select" required>
+<option value="">Select</option>
+<option>Cash on Delivery</option>
+<option>UPI</option>
+<option>Card</option>
+</select>
+</div>
+
+<div class="col-md-6">
+<label class="form-label">Order Total</label>
+<input type="text" class="form-control" id="checkoutTotal" readonly>
+</div>
+
+</div>
+
+</form>
+</div>
+
+<div class="modal-footer">
+<button class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+<button class="btn btn-success" onclick="placeOrder()">Place Order</button>
+</div>
+
+</div>
+</div>
+</div>
+<script>
+document.getElementById("checkoutModal").addEventListener("show.bs.modal", function () {
+    // Get final price from cart summary
+    document.getElementById("checkoutTotal").value = "₹ " + finalBox.textContent;
+});
+</script>
+
+
+<script>
+function placeOrder(){
+
+    // 1. Clear cart storage
+    localStorage.removeItem("cart");
+
+    // 2. Empty cart array in memory
+    cart = [];
+
+    // 3. Update navbar counts
+    updateCounts();
+
+    // 4. Re-render cart (shows empty state)
+    renderCart();
+
+
+
+    // 5. Close modal
+    const modalEl = document.getElementById("checkoutModal");
+    const modal = bootstrap.Modal.getInstance(modalEl);
+    modal.hide();
+
+    // 6. Success message
+    setTimeout(() => {
+        alert("✅ Order placed successfully!");
+    }, 300);
+}
+</script>
+
+
+
+<!-- JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+const cartBox = document.getElementById("cartItems");
+const totalBox = document.getElementById("totalPrice");
+const finalBox = document.getElementById("finalPrice");
+
+renderCart();
+updateCounts();
+
+/* RENDER CART */
+function renderCart(){
+    cartBox.innerHTML = "";
+    let total = 0;
+
+    if(cart.length === 0){
+        cartBox.innerHTML = `
+        <div class="empty-cart">
+            <i class="fa-solid fa-cart-shopping fs-1 text-muted mb-3"></i>
+            <h5>Your cart is empty</h5>
+            <a href="index.html" class="btn btn-dark mt-3">Continue Shopping</a>
+        </div>`;
+        totalBox.textContent = finalBox.textContent = 0;
+        return;
+    }
+
+    cart.forEach((item,index)=>{
+        if(!item.qty) item.qty = 1;
+        let subTotal = item.price * item.qty;
+        total += subTotal;
+
+        cartBox.innerHTML += `
+        <div class="card mb-3 shadow-sm">
+        <div class="card-body d-flex align-items-center gap-3">
+            <img src="${item.image}" class="cart-img">
+
+            <div class="flex-grow-1">
+                <h6 class="fw-bold">${item.name}</h6>
+                <p class="mb-1 text-muted">₹${item.price}</p>
+
+                <div class="d-flex align-items-center gap-2">
+                    <button class="btn btn-outline-secondary qty-btn" onclick="changeQty(${index},-1)">−</button>
+                    <span>${item.qty}</span>
+                    <button class="btn btn-outline-secondary qty-btn" onclick="changeQty(${index},1)">+</button>
+                </div>
+            </div>
+
+            <div class="text-end">
+                <p class="fw-bold mb-2">₹${subTotal}</p>
+                <button class="btn btn-sm btn-outline-danger" onclick="removeItem(${index})">
+                    <i class="fa-solid fa-trash"></i>
+                </button>
+            </div>
+        </div>
+        </div>`;
+    });
+
+    totalBox.textContent = finalBox.textContent = total;
+    localStorage.setItem("cart", JSON.stringify(cart));
+}
+
+/* QUANTITY */
+function changeQty(index,change){
+    cart[index].qty += change;
+    if(cart[index].qty < 1) cart[index].qty = 1;
+    renderCart();
+}
+
+/* REMOVE */
+function removeItem(index){
+    cart.splice(index,1);
+    localStorage.setItem("cart", JSON.stringify(cart));
+    renderCart();
+    updateCounts();
+}
+
+/* COUNTS */
+function updateCounts(){
+    document.getElementById("cartCount").textContent = cart.length;
+    let wish = JSON.parse(localStorage.getItem("wishlist")) || [];
+    document.getElementById("wishCount").textContent = wish.length;
+}
+</script>
+
+</body>
+</html>
